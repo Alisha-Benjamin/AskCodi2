@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Sphere</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+
+        .photo-container {
+            margin: 20px auto;
+            text-align: center;
+        }
+
+        .like-button {
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+
+        a {
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Social Sphere</h1>
+    </header>
+    
+    <div class="photo-container">
+        <img src="path_to_image.jpg" alt="Photo">
+        <div class="like-button" onclick="likePhoto()">&#x2665;</div>
+        <div class="like-count">0 Likes</div>
+        <div class="comment-count">0 Comments</div>
+        <div id="comments-section"></div>
+        <form onsubmit="addComment(event)">
+            <label for="comment-input">Add a Comment:</label>
+            <input type="text" id="comment-input" placeholder="Add a comment...">
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    
+    <footer>
+        <p>© 2023 Social Sphere</p>
+        <a href="https://twitter.com/">Twitter</a>
+        <a href="https://www.instagram.com/">Instagram</a>
+    </footer>
+
+    <script>
+        let likeCount = 0;
+        let commentCount = 0;
+
+        function likePhoto() {
+            likeCount++;
+            document.querySelector('.like-count').textContent = `${likeCount} Likes`;
+            document.querySelector('.like-button').style.color = 'red';
+        }
+
+        function addComment(event) {
+            event.preventDefault();
+            const commentInput = document.getElementById('comment-input').value;
+            document.getElementById('comments-section').innerHTML += `<div>${commentInput}</div>`;
+            commentCount++;
+            document.querySelector('.comment-count').textContent = `${commentCount} Comments`;
+            document.getElementById('comment-input').value = '';
+        }
+    </script>
+</body>
+</html>
